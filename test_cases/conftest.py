@@ -28,7 +28,7 @@ def init_web(request):
     utilities.manage_pages.InitPages.init_all_web_pages(driver)
 
     yield
-    driver.quit()
+    #driver.quit()
 
 #
 # @pytest.fixture(scope='class')
