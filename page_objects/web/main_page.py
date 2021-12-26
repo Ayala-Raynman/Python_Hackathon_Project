@@ -1,3 +1,7 @@
+import allure
+from selenium.webdriver.common.by import By
+
+
 class main_page:
     def __init__(self, driver):
         self.driver = driver
