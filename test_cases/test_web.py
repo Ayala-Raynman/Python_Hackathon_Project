@@ -9,4 +9,5 @@ import work_flow.web_work_flow
 class Test_Web:
 
     def test_01(self):
-        work_flow.web_work_flow.Real_World.login()
+        balance = work_flow.web_work_flow.Real_World.login("Katharina_Bernier", "s3cret")
+        assert balance == '1,681.37'

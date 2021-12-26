@@ -8,7 +8,6 @@ class Sign_In_Page:
         self.driver = driver
 
     def find_user_name_elem(self):
-        print(type(self.driver))
         user_name:WebElement=self.driver.find_element(By.ID, "username")
         return user_name
 

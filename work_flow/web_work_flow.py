@@ -8,7 +8,10 @@ from utilities import manage_pages
 class Real_World:
 
     @staticmethod
-    def login():
-        manage_pages.sign_in.find_user_name_elem().send_keys("ayala")
-        manage_pages.sign_in.find_password_elem().send_keys("1234")
+    def login(user_name,password):
+        manage_pages.sign_in.find_user_name_elem().send_keys(user_name)
+        manage_pages.sign_in.find_password_elem().send_keys(password)
         manage_pages.sign_in.find_loggin_elem().click()
+        balance_text= manage_pages.left_page.find_account_balance_element().text[1:]
+        manage_pages.left_page.find_logout_element().click()
+        return balance_text
