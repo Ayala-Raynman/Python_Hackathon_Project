@@ -12,4 +12,6 @@ class Real_World:
         manage_pages.sign_in.find_user_name_elem().send_keys(user_name)
         manage_pages.sign_in.find_password_elem().send_keys(password)
         manage_pages.sign_in.find_loggin_elem().click()
-        return manage_pages.left_page.find_account_balance_element().text[1:]
+        balance_text= manage_pages.left_page.find_account_balance_element().text[1:]
+        manage_pages.left_page.find_logout_element().click()
+        return balance_text
