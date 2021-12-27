@@ -12,7 +12,7 @@ class sign_up_page:
         return self.driver.find_element(By.ID, "firstName")
 
     @allure.step("finding surname name text field for signup")
-    def find_user_name_elem(self):
+    def find_surname_elem(self):
         return self.driver.find_element(By.ID, "lastName")
 
     @allure.step("finding username text field for signup")
@@ -24,9 +24,9 @@ class sign_up_page:
         return self.driver.find_element(By.ID, "password")
 
     @allure.step("finding confirm-password text field for signup")
-    def find_password_elem(self):
-        return self.driver.find_element(By.ID, "confirm password")
+    def find_confirm_password_elem(self):
+        return self.driver.find_element(By.ID, "confirmPassword")
 
     @allure.step("finding sign up button for signup")
-    def find_password_elem(self):
+    def find_sign_up_button_elem(self):
         return self.driver.find_element(By.XPATH, "//*[@data-test='signup-submit']")

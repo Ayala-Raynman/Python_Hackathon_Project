@@ -6,8 +6,8 @@ class main_page:
     def __init__(self, driver):
         self.driver = driver
 
-    @allure.step("finding button in html window")
-    def find_popup_element(self):
+    @allure.step("finding next button in get started window")
+    def find_next_button_in_get_started_page_element(self):
         return self.driver.find_element(By.XPATH, "//*[@role='dialog']//*[@data-test='user-onboarding-next']")
 
     @allure.step("find bank name text field")
@@ -24,13 +24,25 @@ class main_page:
 
     @allure.step("find submit button for creating bank account")
     def find_submit_button_element(self):
-        return self.driver.find_element(By.XPATH, "//*[@role='dialog']//*[@class='MuiGrid-root MuiGrid-container "
-                                                  "MuiGrid-spacing-xs-2 MuiGrid-align-items-xs-flex-start']//*["
-                                                  "@data-test='bankaccount-submit']")
+        return self.driver.find_element(By.XPATH, "//*[@role='presentation']//*[@data-test='bankaccount-submit']")
 
-    @allure.step("find next button for finish registration")
+    @allure.step("find DONE button for finish registration")
     def find_next_button_for_finish(self):
         return self.driver.find_element(By.XPATH, "//*[@role='dialog']//*[@data-test='user-onboarding-next']")
+
+    @allure.step("find My Accounts button for User Settings page")
+    def find_my_account_btn_element(self):
+        return self.driver.find_element(By.XPATH, "//*[text()='My Account']")
+
+    @allure.step("find label text username text and return it")
+    def find_user_name_label_elem(self):
+        return self.driver.find_element(By.XPATH, "//*[@data-test='sidenav-username']").text
+
+    @allure.step("find Bank accounts in the user side-navbar")
+    def find_bank_accounts_in_side_navbar(self):
+        return self.driver.find_element(By.XPATH, "//*[@data-test='sidenav-bankaccounts']")
+
+
 
 
 
