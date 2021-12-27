@@ -16,3 +16,8 @@ class Sign_In_Page:
 
     def find_loggin_elem(self):
         return self.driver.find_element(By.XPATH, "//form/button")
+
+    @allure.step("find the button for signup")
+    def find_sign_up_button_elem(self):
+        return self.driver.find_element(By.XPATH, "//*[@id='root']/div/main/div[1]/form/div[3]/div[2]/a")
+

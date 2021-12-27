@@ -6,6 +6,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 import utilities
 import utilities.common_ops
 import utilities.manage_pages
+from utilities import base
 
 driver = None
 action = None
@@ -22,18 +23,19 @@ def init_web(request):
         driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.get("http://localhost:3000/")
     driver.maximize_window()
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(10)
     globals()['driver'] = driver
+    base.driver = driver
     request.cls.driver = driver
     utilities.manage_pages.InitPages.init_all_web_pages(driver)
 
     yield
     #driver.quit()
 
+
 #
 # @pytest.fixture(scope='class')
 # def init_api(request):
-
 
 
 @pytest.fixture(scope='class')

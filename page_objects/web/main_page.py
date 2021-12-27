@@ -32,3 +32,8 @@ class main_page:
     def find_next_button_for_finish(self):
         return self.driver.find_element(By.XPATH, "//*[@role='dialog']//*[@data-test='user-onboarding-next']")
 
+
+
+
+
+
