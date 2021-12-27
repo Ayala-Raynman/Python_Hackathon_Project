@@ -6,7 +6,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 import utilities
 import utilities.common_ops
 import utilities.manage_pages
-from utilities import base
+from utilities import base, manage_DB
 
 driver = None
 action = None
@@ -28,9 +28,29 @@ def init_web(request):
     base.driver = driver
     request.cls.driver = driver
     utilities.manage_pages.InitPages.init_all_web_pages(driver)
+    manage_DB.reade_from_db()
+    yield
+    driver.quit()
+
+@pytest.fixture(scope='class')
+def init_desktop(request):
+
+    desired_caps = {}
+    desired_caps["app"] = "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App"
+    desired_caps["platformName"] = "Windows"
+    desired_caps["deviceName"] = "WindowsPC"
+    driver = webdriver.Remote("http://127.0.0.1:4723", desired_caps)
+    driver.implicitly_wait(5)
+    globals()['driver'] = driver
+    base.driver = driver
+    request.cls.driver = driver
+    utilities.manage_pages.InitPages.init_desktop_pages(driver)
+
+
+
 
     yield
-    #driver.quit()
+    driver.quit()
 
 
 #

@@ -8,17 +8,24 @@ from page_objects.web.sign_in_page import Sign_In_Page
 from utilities import manage_pages
 from utilities import base
 from smart_assertions import soft_assert, verify_expectations
+from utilities import base
+
 
 class Real_World:
 
     @staticmethod
     def login(user_name, password):
-        manage_pages.sign_in.find_user_name_elem().send_keys(user_name)
-        manage_pages.sign_in.find_password_elem().send_keys(password)
-        manage_pages.sign_in.find_loggin_elem().click()
+        UIActions.send_keys(manage_pages.sign_in.find_user_name_elem(), user_name)
+        UIActions.send_keys(manage_pages.sign_in.find_password_elem(), password)
+        UIActions.click(manage_pages.sign_in.find_loggin_elem())
         balance_text = manage_pages.left_page.find_account_balance_element().text[1:]
-        manage_pages.left_page.find_logout_element().click()
+        UIActions.click(manage_pages.left_page.find_logout_element())
         return balance_text
+
+    @staticmethod
+    def convert_balance_to_integer(balance: str):
+        int_balance = int(balance.split('.')[0].replace(",", ""))
+        return int_balance
 
     @staticmethod
     def signup_new_user():
@@ -56,7 +63,8 @@ class Real_World:
     def verify_if_registration_is_successful():
         UIActions.click(manage_pages.main_page.find_my_account_btn_element())
         soft_assert(manage_pages.main_page.find_user_name_label_elem() == "@jeffjeff123456")
-        soft_assert(manage_pages.user_settings_page.find_first_name_textField_element().get_attribute('value') == "jeffjeff")
+        soft_assert(
+            manage_pages.user_settings_page.find_first_name_textField_element().get_attribute('value') == "jeffjeff")
         soft_assert(manage_pages.user_settings_page.find_surname_textField_element().get_attribute('value') == "Kuku")
         verify_expectations()
 
@@ -64,11 +72,3 @@ class Real_World:
     def verify_bank_account_name():
         UIActions.click(manage_pages.main_page.find_bank_accounts_in_side_navbar())
         assert manage_pages.user_settings_page.find_bank_name_element().text == "leumi"
-
-
-
-
-
-
-
-

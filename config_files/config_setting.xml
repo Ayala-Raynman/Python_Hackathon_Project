@@ -3,4 +3,6 @@
 	<Platform>web</Platform>
 	<BrowserType>chrome</BrowserType>
 	<webUrl>localhost:3000</webUrl>
+	<apiUrl>http://localhost:3000/users/</apiUrl>
+	<userId>10</userId>
 </Enviorment>
