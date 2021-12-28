@@ -69,6 +69,7 @@ class Real_World:
             manage_pages.user_settings_page.find_first_name_textField_element().get_attribute('value') == "jeffjeff")
         soft_assert(manage_pages.user_settings_page.find_surname_textField_element().get_attribute('value') == "Kuku")
         verify_expectations()
+        UIActions.click(manage_pages.left_page.find_logout_element())
 
     @staticmethod
     def verify_bank_account_name():

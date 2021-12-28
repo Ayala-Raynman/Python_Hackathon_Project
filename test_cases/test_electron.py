@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import page_objects.electron.create_window_page
 import utilities.manage_pages
+from extensions.verification import verify_equal
 from utilities import base, common_ops
 import work_flow.electron_work_flow
 
@@ -16,7 +17,7 @@ class Test_Electron:
     def test_01(self):
         actual_text = work_flow.electron_work_flow.ApiDemos.get_text_from_demo_window()
         excpected_text = common_ops.get_data('electronExpectedText')  # "Hello World!"
-        assert actual_text == excpected_text
+        verify_equal(actual_text, excpected_text)
 
 
 
