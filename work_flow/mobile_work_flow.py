@@ -1,3 +1,5 @@
+import allure
+
 from utilities import base, manage_pages
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
@@ -6,6 +8,7 @@ from extensions.ui_actions import UIActions
 
 class Financial_Calculators:
     @staticmethod
+    @allure.step("Change the app background color")
     def change_background_color():
         UIActions.click(manage_pages.setting_page.btn_home_screen())
         UIActions.click(manage_pages.setting_page.btn_setting())
@@ -19,16 +22,19 @@ class Financial_Calculators:
         return current_background_color
 
     @staticmethod
+    @allure.step("get the current background color")
     def get_background_color():
         chosen_background_color = manage_pages.setting_page.get_current_background_color()
         return chosen_background_color.text
 
     @staticmethod
+    @allure.step("Get number of sub app")
     def get_number_of_app_icons():
         number_of_app_icons = manage_pages.home_page.get_num_sub_apps()
         return len(number_of_app_icons)
 
     @staticmethod
+    @allure.step("Calculating a tip and returning the amount")
     def get_total_payment(bill, tip):
         UIActions.click(manage_pages.calc_tips_page.btn_calc_tips_apps())
         UIActions.send_keys(manage_pages.calc_tips_page.input_bill(), str(bill))
@@ -40,5 +46,6 @@ class Financial_Calculators:
         return manage_pages.calc_tips_page.total_payment().text
 
     @staticmethod
+    @allure.step("Method for calculating tips")
     def verify_tip(bill, tip):
         return float(float(bill) * (float(tip) + 100) / 100)

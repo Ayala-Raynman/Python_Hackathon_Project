@@ -6,7 +6,6 @@ import pytest
 from extensions.verification import verify_equal
 from work_flow.desktop_work_flow import Calculator
 
-
 @pytest.mark.usefixtures('init_desktop')
 class Test_Desktop:
     @allure.title("Verify result of calculator")

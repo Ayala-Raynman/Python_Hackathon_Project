@@ -1,10 +1,7 @@
-import os
-
 import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-from appium import webdriver as mb
 import utilities
 import utilities.common_ops
 import utilities.manage_pages
@@ -12,7 +9,6 @@ from utilities import base, manage_DB
 from utilities.common_ops import get_data
 
 driver = "No Driver"
-action = None
 
 
 @pytest.fixture(scope='class')
@@ -51,11 +47,10 @@ def init_desktop(request):
     driver.quit()
 
 
-
 @pytest.fixture(scope='class')
 def init_electron(request):
     options = webdriver.ChromeOptions()
-    options.binary_location = utilities.common_ops.get_data('electronAppPath') #electron_app
+    options.binary_location = utilities.common_ops.get_data('electronAppPath')  # electron_app
     edriver = utilities.common_ops.get_data('electronDriverPath')
     driver = webdriver.Chrome(chrome_options=options, executable_path=edriver)
 
@@ -69,21 +64,18 @@ def init_electron(request):
     yield
     driver.quit()
 
-#
-# @pytest.fixture(scope='class')
-# def init_api(request):
-
 
 @pytest.fixture(scope='class')
 def init_mobile(request):
-    base.dc['reportDirectory'] = base.reportDirectory
-    base.dc['reportFormat'] = base.reportFormat
-    base.dc['testName'] = base.testName
-    base.dc['udid'] = 'RF8M90XHJMJ'
-    base.dc['appPackage'] = 'com.financial.calculator'
-    base.dc['appActivity'] = '.FinancialCalculators'
-    base.dc['platformName'] = 'android'
-    base.driver = webdriver.Remote('http://localhost:4723/wd/hub', base.dc)
+    dc = {}
+    dc['reportDirectory'] = get_data('reportDirectory')
+    dc['reportFormat'] = get_data('reportFormat')
+    dc['testName'] = get_data('testName')
+    dc['udid'] = get_data('udid')
+    dc['appPackage'] = get_data('appPackage')
+    dc['appActivity'] = get_data('appActivity')
+    dc['platformName'] = get_data('platformName')
+    base.driver = webdriver.Remote(get_data('server'), dc)
     utilities.manage_pages.InitPages.init_appium_pages(driver)
 
     yield

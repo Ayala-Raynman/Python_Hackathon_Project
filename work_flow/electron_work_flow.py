@@ -25,14 +25,6 @@ class ApiDemos:
         UIActions.switch_to_new_window(handles_before)
 
     @staticmethod
-    @allure.step("navigate to newest window opened")
-    def switch_to_new_window(handles_before):
-        WebDriverWait(base.driver, 5).until(
-            lambda driver: len(handles_before) != len(driver.window_handles))
-        handles = base.driver.window_handles
-        base.driver.switch_to.window(handles[len(handles) - 1])
-
-    @staticmethod
     @allure.step("get text of demo window")
     def get_text_from_demo_window():
         original_window_handle = base.driver.current_window_handle

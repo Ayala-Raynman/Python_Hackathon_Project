@@ -48,7 +48,3 @@ class UIActions:
         handles = base.driver.window_handles
         base.driver.switch_to.window(handles[len(handles) - 1])
 
-    #@staticmethod
-    #def click_safely(elem: WebElement, by_obj):
-    #    WebDriverWait(base.driver, 5).until(EC.element_to_be_clickable(by_obj))
-    #    elem.click()
