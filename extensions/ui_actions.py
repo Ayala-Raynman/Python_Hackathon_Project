@@ -37,7 +37,7 @@ class UIActions:
         elem.clear()
         elem.send_keys(string_to_send)
 
-    @staticmethod
-    def click_safely(elem: WebElement, by_obj):
-        WebDriverWait(base.driver, 5).until(EC.element_to_be_clickable(by_obj))
-        elem.click()
+    #@staticmethod
+    #def click_safely(elem: WebElement, by_obj):
+    #    WebDriverWait(base.driver, 5).until(EC.element_to_be_clickable(by_obj))
+    #    elem.click()
