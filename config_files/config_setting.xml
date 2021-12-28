@@ -3,6 +3,9 @@
 	<Platform>web</Platform>
 	<BrowserType>chrome</BrowserType>
 	<webUrl>localhost:3000</webUrl>
+	<electronAppPath>C:/Autmation/Electron/Electron API Demos-win32-ia32/Electron API Demos.exe</electronAppPath>
+	<electronDriverPath>C:/Autmation/Electron/electrondriver.exe</electronDriverPath>
+	<electronExpectedText>Hello World!</electronExpectedText>
 	<apiUrl>http://localhost:3000/users/</apiUrl>
 	<userId>10</userId>
 </Enviorment>

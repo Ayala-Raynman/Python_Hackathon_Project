@@ -48,6 +48,24 @@ def init_desktop(request):
     driver.quit()
 
 
+
+@pytest.fixture(scope='class')
+def init_electron(request):
+    options = webdriver.ChromeOptions()
+    options.binary_location = utilities.common_ops.get_data('electronAppPath') #electron_app
+    edriver = utilities.common_ops.get_data('electronDriverPath')
+    driver = webdriver.Chrome(chrome_options=options, executable_path=edriver)
+
+    driver.implicitly_wait(10)
+    driver.set_page_load_timeout(10)
+    globals()['driver'] = driver
+    base.driver = driver
+    request.cls.driver = driver
+    utilities.manage_pages.InitPages.init_electron_pages(base.driver)
+
+    yield
+    driver.quit()
+
 #
 # @pytest.fixture(scope='class')
 # def init_api(request):

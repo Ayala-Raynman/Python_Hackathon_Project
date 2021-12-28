@@ -1,8 +1,10 @@
+import page_objects
 from page_objects.web.sign_in_page import Sign_In_Page
 from page_objects.web.main_page import main_page
 from page_objects.web.user_settings_page import user_settings_page
 from page_objects.web.sign_up_page import sign_up_page
 from page_objects.web.left_page import Left_Page
+from page_objects.electron import create_window_page
 from page_objects.desktop.calculator_page import Calculator_Page
 from page_objects.appium.setting_page import Setting_Page
 from page_objects.appium.hom_page import Home_Page
@@ -10,8 +12,8 @@ from page_objects.appium.calculator_tips_page import Calculator_Tips_Page
 
 sign_in = None
 left_page = None
-
-calc_page = None
+electron_page = None
+calc_page=None
 
 setting_page = None
 home_page = None
@@ -28,6 +30,9 @@ class InitPages:
         globals()['sign_up_page'] = sign_up_page(driver)
         globals()['left_page'] = Left_Page(driver)
 
+    @staticmethod
+    def init_electron_pages(driver):
+        globals()['electron_page'] = create_window_page.CreateWindowsPage(driver)
     @staticmethod
     def init_appium_pages(driver):
         globals()['setting_page'] = Setting_Page(driver)

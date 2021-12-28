@@ -22,6 +22,11 @@ class UIActions:
         elem.click()
 
     @staticmethod
+    def click_safely(elem: WebElement, by_obj):
+        WebDriverWait(base.driver, 5).until(EC.element_to_be_clickable(by_obj))
+        elem.click()
+
+    @staticmethod
     def doubleClick(elem: WebElement):
         action = ActionChains(base.driver)
         action.move_to_element(elem).double_click(elem).perform()
