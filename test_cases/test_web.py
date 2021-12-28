@@ -1,7 +1,9 @@
 import pytest
-from nose.plugins.builtin import cls
+# from nose.plugins.builtin import cls
 
 import test_cases.conftest
+from test_cases import conftest
+
 from work_flow.web_work_flow import Real_World
 import work_flow.web_work_flow
 import utilities.manage_DB
@@ -11,6 +13,7 @@ from utilities import base
 
 @pytest.mark.usefixtures('init_web')
 class Test_Web:
+
     param_name = "user_name, password,ammount"
     list_users = manage_DB.reade_from_db()
 
@@ -20,6 +23,11 @@ class Test_Web:
         assert Real_World.convert_balance_to_integer(balance) == amount
 
     def test_02(self):
+        print(conftest.driver)
+        print(self.driver3)
+        print(conftest.driver)
+        print(conftest.driver)
+
         work_flow.web_work_flow.Real_World.signup_new_user()
         work_flow.web_work_flow.Real_World.signup_new_user()
         work_flow.web_work_flow.Real_World.login_first_after_sign_up()
@@ -35,4 +43,4 @@ class Test_Web:
         result=manage_DB.reade_from_db()
         print(type(result))
         print(result)
-        # manage_DB.close_db()
+        manage_DB.close_db()

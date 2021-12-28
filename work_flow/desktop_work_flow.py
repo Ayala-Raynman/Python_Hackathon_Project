@@ -1,5 +1,6 @@
 import allure
 from extensions.ui_actions import UIActions
+from test_cases import conftest
 from utilities import manage_pages
 
 
@@ -18,6 +19,7 @@ class Calculator:
    # @allure.step("Clicking on number type organs")
     @staticmethod
     def numbers_buttns(digit):
+        print(conftest.driver)
         if digit == "1":
             UIActions.click(manage_pages.calc_page.btn_1())
         elif digit == "2":
