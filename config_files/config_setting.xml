@@ -4,8 +4,8 @@
 	<BrowserType>chrome</BrowserType>
 	<webUrl>localhost:4000</webUrl>
 <!--	electron-->
-	<electronAppPath>C:\Automation\Electron\Electron API Demos.exe</electronAppPath>
-	<electronDriverPath>C:\Automation/electrondriver.exe</electronDriverPath>
+	<electronAppPath>C:/Autmation/Electron/Electron API Demos-win32-ia32/Electron API Demos.exe</electronAppPath>
+	<electronDriverPath>C:/Autmation/Electron/electrondriver.exe</electronDriverPath>
 	<electronExpectedText>Hello World!</electronExpectedText>
 	<!--	api-->
 	<apiUrl>http://localhost:3000/users/</apiUrl>

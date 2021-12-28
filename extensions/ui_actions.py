@@ -9,7 +9,7 @@ from utilities import base
 
 class UIActions:
     @staticmethod
-    @allure.Step("clicking on an element")
+    @allure.step("clicking on an element")
     def click(elem: WebElement):
         # WebDriverWait(base.driver, 5).until(EC.element_to_be_clickable(elem))
         base.driver.implicitly_wait(5)
@@ -39,3 +39,16 @@ class UIActions:
         base.driver.implicitly_wait(5)
         elem.clear()
         elem.send_keys(string_to_send)
+
+    @staticmethod
+    @allure.step("navigate to newest window opened")
+    def switch_to_new_window(handles_before):
+        WebDriverWait(base.driver, 5).until(
+            lambda driver: len(handles_before) != len(driver.window_handles))
+        handles = base.driver.window_handles
+        base.driver.switch_to.window(handles[len(handles) - 1])
+
+    #@staticmethod
+    #def click_safely(elem: WebElement, by_obj):
+    #    WebDriverWait(base.driver, 5).until(EC.element_to_be_clickable(by_obj))
+    #    elem.click()

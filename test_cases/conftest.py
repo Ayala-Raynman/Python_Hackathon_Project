@@ -59,7 +59,7 @@ def init_electron(request):
     edriver = utilities.common_ops.get_data('electronDriverPath')
     driver = webdriver.Chrome(chrome_options=options, executable_path=edriver)
 
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(5)
     driver.set_page_load_timeout(10)
     globals()['driver'] = driver
     base.driver = driver
