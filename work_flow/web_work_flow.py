@@ -9,6 +9,8 @@ from utilities import manage_pages
 from utilities import base
 from smart_assertions import soft_assert, verify_expectations
 from utilities import base
+from applitools.selenium import Eyes
+
 
 
 class Real_World:
@@ -72,3 +74,24 @@ class Real_World:
     def verify_bank_account_name():
         UIActions.click(manage_pages.main_page.find_bank_accounts_in_side_navbar())
         assert manage_pages.user_settings_page.find_bank_name_element().text == "leumi"
+
+    @staticmethod
+    def verify_version_of_web_device():
+        eyes = Eyes()
+        eyes.api_key = base.api_key_for_applitools
+        size = base.driver.get_window_size()
+        height = size['height']
+        width = size['width']
+        print("height is : " + str(height) + " and width is " + str(width))
+        eyes.open(base.driver, "Python Hackaton project", "testing the web version of Real World app")
+        eyes.check_window("watch in the page in desktop version")
+        base.driver.set_window_size(int(width/5), height)
+        time.sleep(3)
+        size = base.driver.get_window_size()
+        height = size['height']
+        width = size['width']
+        print("height is : " + str(height) + " and width is " + str(width))
+        eyes.check_window("watch in the page in mobile version")
+        eyes.close()
+
+

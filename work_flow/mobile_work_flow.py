@@ -1,46 +1,44 @@
-import time
-
-from selenium.webdriver.common.by import By
-
-from utilities import base
+from utilities import base, manage_pages
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
+from extensions.ui_actions import UIActions
 
 
 class Financial_Calculators:
     @staticmethod
     def change_background_color():
-        base.driver.find_element_by_xpath("xpath=//*[@contentDescription='נווט למעלה']").click()
-        base.driver.find_element_by_xpath("xpath=//*[@text='Settings']").click()
-        base.driver.find_element_by_xpath(
-            "xpath=//*[@class='android.widget.RelativeLayout' and ./*[@text='Background color']]").click()
-        base.driver.find_element_by_xpath("xpath=//*[@text='Black']").click()
+        UIActions.click(manage_pages.setting_page.btn_home_screen())
+        UIActions.click(manage_pages.setting_page.btn_setting())
+        UIActions.click(manage_pages.setting_page.find_background_colors())
+        UIActions.click(manage_pages.setting_page.black_background_color())
+
         current_background_color = Financial_Calculators.get_background_color()
-        WebDriverWait(base.driver, 30).until(
-            expected_conditions.presence_of_element_located((By.XPATH, "//*[@contentDescription='נווט למעלה']")))
-        base.driver.find_element_by_xpath("xpath=//*[@contentDescription='נווט למעלה']").click()
+        UIActions.click_safely(manage_pages.setting_page.btn_home_screen(),
+                               manage_pages.setting_page.btn_home_screen_by())
+        UIActions.click(manage_pages.setting_page.btn_home_screen())
         return current_background_color
 
     @staticmethod
     def get_background_color():
-        chosen_background_color = base.driver.find_element(By.XPATH, "(//*[@id='listview']/*/*[@id='text2'])[1]")
+        chosen_background_color = manage_pages.setting_page.get_current_background_color()
         return chosen_background_color.text
 
     @staticmethod
     def get_number_of_app_icons():
-        number_of_app_icons = base.driver.find_elements(By.XPATH, "(//*[@id='mainGrid']/*[./*[@id='icon']])")
+        number_of_app_icons = manage_pages.home_page.get_num_sub_apps()
         return len(number_of_app_icons)
 
     @staticmethod
     def get_total_payment(bill, tip):
-        base.driver.find_element(By.XPATH, "(//*[@id='mainGrid']/*/*[@id='icon'])[7]").click()
-        base.driver.find_element(By.XPATH, "//*[@id='billInput']").send_keys(str(bill))
-        WebDriverWait(base.driver, 60).until(expected_conditions.presence_of_element_located((By.XPATH, "//*[@id='tipInput']")))
-        base.driver.find_element(By.XPATH, "//*[@id='tipInput']").click()
-        base.driver.find_element(By.XPATH, "//*[@id='tipInput']").send_keys(str(tip))
-        return base.driver.find_element(By.XPATH, "//*[@id='totalCheckResult']").text
+        UIActions.click(manage_pages.calc_tips_page.btn_calc_tips_apps())
+        UIActions.send_keys(manage_pages.calc_tips_page.input_bill(), str(bill))
+
+        WebDriverWait(base.driver, 60).until(
+            expected_conditions.presence_of_element_located((manage_pages.calc_tips_page.input_tip_by())))
+        UIActions.click(manage_pages.calc_tips_page.input_tip())
+        UIActions.send_keys(manage_pages.calc_tips_page.input_tip(), str(tip))
+        return manage_pages.calc_tips_page.total_payment().text
 
     @staticmethod
     def verify_tip(bill, tip):
-        return float(float(bill)*(float(tip) + 100)/100)
-
+        return float(float(bill) * (float(tip) + 100) / 100)
