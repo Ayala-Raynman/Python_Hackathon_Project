@@ -2,7 +2,7 @@ import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-
+from appium import webdriver as mb
 import utilities
 import utilities.common_ops
 import utilities.manage_pages
@@ -63,6 +63,7 @@ def init_mobile(request):
     base.dc['appActivity'] = '.FinancialCalculators'
     base.dc['platformName'] = 'android'
     base.driver = webdriver.Remote('http://localhost:4723/wd/hub', base.dc)
+    utilities.manage_pages.InitPages.init_appium_pages(driver)
 
     yield
     base.driver.quit()
