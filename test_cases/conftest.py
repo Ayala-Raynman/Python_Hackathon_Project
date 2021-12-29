@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -13,15 +15,15 @@ driver = "No Driver"
 
 @pytest.fixture(scope='class')
 def init_web(request):
-    platform: str = utilities.common_ops.get_data("BrowserType")
-    # platform: str = os.getenv('BrowserType')
+    # platform: str = utilities.common_ops.get_data("BrowserType")
+    platform: str = os.getenv('BrowserType')
     if platform.lower() == 'chrome':
         driver = webdriver.Chrome(ChromeDriverManager().install())
     elif platform.lower() == 'firefox':
         driver = webdriver.Firefox(GeckoDriverManager().install())
     else:
         raise Exception("Wrong Browser")
-    driver.get("http://localhost:3000/")
+    driver.get(get_data('webUrl'))
     driver.maximize_window()
     driver.implicitly_wait(10)
     base.driver = driver

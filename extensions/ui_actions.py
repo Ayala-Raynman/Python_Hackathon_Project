@@ -36,7 +36,7 @@ class UIActions:
     @staticmethod
     @allure.step("send text to input")
     def send_keys(elem: WebElement, string_to_send):
-        base.driver.implicitly_wait(5)
+        base.driver.implicitly_wait(2)
         elem.clear()
         elem.send_keys(string_to_send)
 

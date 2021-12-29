@@ -14,7 +14,7 @@ sign_in = None
 left_page = None
 electron_page = None
 electron_demo_page = None
-calc_page=None
+calc_page = None
 
 setting_page = None
 home_page = None
@@ -35,6 +35,7 @@ class InitPages:
     def init_electron_pages(driver):
         globals()['electron_page'] = create_window_page.CreateWindowsPage(driver)
         globals()['electron_demo_page'] = demo_window_page.DemoWindowPage(driver)
+
     @staticmethod
     def init_appium_pages(driver):
         globals()['setting_page'] = Setting_Page(driver)

@@ -1,0 +1,1 @@
+{"uuid": "9285aa06-d79f-48f4-ac5e-2f8c6a8ed7cc", "children": ["b20d5121-126c-407b-8f92-23d6b66f782a"], "befores": [{"name": "init_electron", "status": "passed", "start": 1640741946570, "stop": 1640741952153}], "afters": [{"name": "init_electron::0", "status": "passed", "start": 1640741954524, "stop": 1640741958608}], "start": 1640741946570, "stop": 1640741958608}

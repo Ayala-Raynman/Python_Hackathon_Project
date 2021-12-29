@@ -1,6 +1,8 @@
 import allure
 import pytest
 from smart_assertions import verify_expectations
+
+from extensions.verification import verify_equal
 from work_flow.web_work_flow import Real_World
 import work_flow.web_work_flow
 from utilities import manage_DB, manage_pages
@@ -18,7 +20,7 @@ class Test_Web:
     @pytest.mark.parametrize(base.param_name, base.data_list)
     def test_01(self, user_name, password, amount):
         balance = Real_World.login(user_name, password)
-        assert Real_World.convert_balance_to_integer(balance) == amount
+        verify_equal(Real_World.convert_balance_to_integer(balance), amount)
 
     @allure.title("verify user details")
     @allure.description("checking if first name,last name and user name are the exact names as the user registered ")
@@ -35,7 +37,7 @@ class Test_Web:
     def test_03(self):
         work_flow.web_work_flow.Real_World.login_first_after_sign_up()
         work_flow.web_work_flow.Real_World.verify_bank_account_name()
-        assert manage_pages.user_settings_page.find_bank_name_element().text == get_data('bankName')
+        verify_equal(manage_pages.user_settings_page.find_bank_name_element().text, get_data('bankName'))
 
     @allure.title("check web version")
     @allure.description("after reducing the web browser window by 80% of the original size we will verify if the "
