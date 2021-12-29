@@ -1,11 +1,7 @@
 import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-
-import extensions.ui_actions
 from extensions.ui_actions import UIActions
-import page_objects.electron.create_window_page
 from utilities import manage_pages, base
 
 

@@ -1,7 +1,4 @@
-
-
 import pytest
-
 from extensions.verification import verify_equal
 from utilities import common_ops
 import work_flow.electron_work_flow

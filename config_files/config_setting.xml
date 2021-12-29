@@ -2,7 +2,7 @@
 <Enviorment>
     <Platform>web</Platform>
     <BrowserType>chrome</BrowserType>
-    <webUrl>localhost:4000</webUrl>
+    <webUrl>http://localhost:3000/</webUrl>
     <firstName>jeffjeff</firstName>
     <lastName>Kuku</lastName>
     <userName>jeffjeff123456</userName>

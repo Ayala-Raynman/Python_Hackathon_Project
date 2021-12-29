@@ -20,8 +20,7 @@ def init_web(request):
     elif platform.lower() == 'firefox':
         driver = webdriver.Firefox(GeckoDriverManager().install())
     else:
-        raise Exception("worng")
-        # driver = webdriver.Chrome(ChromeDriverManager().install())
+        raise Exception("Wrong Browser")
     driver.get("http://localhost:3000/")
     driver.maximize_window()
     driver.implicitly_wait(10)

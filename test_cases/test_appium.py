@@ -1,3 +1,5 @@
+import os
+
 import allure
 import pytest
 from extensions.verification import verify_equal
@@ -24,8 +26,8 @@ class Test_appium:
     @allure.title("Verify tip calculation application")
     @allure.description("This test verify  tip calculation app")
     def test_03_check_tip_calculation(self):
-        bill = 100
-        tip = 12
+        bill = os.getenv('bill')
+        tip = os.getenv('tip')
         actual_number_of_total_price = mobile_work_flow.Financial_Calculators.get_total_payment(str(bill), str(tip))
         expected_total_price = (mobile_work_flow.Financial_Calculators.verify_tip(bill, tip))
         verify_equal(float(actual_number_of_total_price), expected_total_price)
