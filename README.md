@@ -42,8 +42,6 @@ Aplitools for Visual Testing
 
 Work with Page Objects.
 
-Use in Event Listeners.
-
 External files-rom cvs and xml files.
 
 Use in Soft Assertions.
