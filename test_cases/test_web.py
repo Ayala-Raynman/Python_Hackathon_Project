@@ -1,15 +1,11 @@
-
+import allure
 import pytest
-# from nose.plugins.builtin import cls
-
-import test_cases.conftest
-from test_cases import conftest
-
+from smart_assertions import verify_expectations
 from work_flow.web_work_flow import Real_World
 import work_flow.web_work_flow
-import utilities.manage_DB
-from utilities import manage_DB
+from utilities import manage_DB, manage_pages
 from utilities import base
+from utilities.common_ops import get_data
 
 
 @pytest.mark.usefixtures('init_web')
@@ -17,22 +13,32 @@ class Test_Web:
     param_name = "user_name, password,ammount"
     list_users = manage_DB.reade_from_db()
 
+    @allure.title("checking balance")
+    @allure.description("after taking from sql we will verify if the user has the precise balance")
     @pytest.mark.parametrize(base.param_name, base.data_list)
     def test_01(self, user_name, password, amount):
         balance = Real_World.login(user_name, password)
         assert Real_World.convert_balance_to_integer(balance) == amount
 
+    @allure.title("verify user details")
+    @allure.description("checking if first name,last name and user name are the exact names as the user registered ")
     def test_02(self):
-        work_flow.web_work_flow.Real_World.signup_new_user()
         work_flow.web_work_flow.Real_World.signup_new_user()
         work_flow.web_work_flow.Real_World.login_first_after_sign_up()
         work_flow.web_work_flow.Real_World.create_bank_account()
         work_flow.web_work_flow.Real_World.verify_if_registration_is_successful()
-        # work_flow.web_work_flow.Real_World.verify_bank_account_name()
+        verify_expectations()
 
-    # def test_03(self):
-    #     work_flow.web_work_flow.Real_World.verify_bank_account_name()
-
-    def test_05(self):
+    @allure.title("verify bank details")
+    @allure.description("checking if bank account details in the account are the same as bank account details the "
+                        "user wrote down the registration")
+    def test_03(self):
         work_flow.web_work_flow.Real_World.login_first_after_sign_up()
+        work_flow.web_work_flow.Real_World.verify_bank_account_name()
+        assert manage_pages.user_settings_page.find_bank_name_element().text == get_data('bankName')
+
+    @allure.title("check web version")
+    @allure.description("after reducing the web browser window by 80% of the original size we will verify if the "
+                        "website has changes its responsiveness by smaller logo")
+    def test_04(self):
         work_flow.web_work_flow.Real_World.verify_version_of_web_device()

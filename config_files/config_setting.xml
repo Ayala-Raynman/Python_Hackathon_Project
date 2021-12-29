@@ -3,6 +3,14 @@
     <Platform>web</Platform>
     <BrowserType>chrome</BrowserType>
     <webUrl>localhost:4000</webUrl>
+    <firstName>jeffjeff</firstName>
+    <lastName>Kuku</lastName>
+    <userName>jeffjeff123456</userName>
+    <password>jenkins123</password>
+    <reconfirmPassword>jenkins123</reconfirmPassword>
+    <bankName>leumi</bankName>
+    <routingNumber>123456789</routingNumber>
+    <accountNumber>000123456789</accountNumber>
     <!--	electron-->
     <electronAppPath>C:\Automation\Electron\Electron API Demos.exe</electronAppPath>
     <electronDriverPath>C:\Automation/electrondriver.exe</electronDriverPath>
