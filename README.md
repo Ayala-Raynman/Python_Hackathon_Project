@@ -42,7 +42,7 @@ Aplitools for Visual Testing
 
 Work with Page Objects.
 
-External files-rom cvs and xml files.
+External files-from xml files.
 
 Use in Soft Assertions.
 
