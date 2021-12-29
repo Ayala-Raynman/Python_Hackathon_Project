@@ -3,7 +3,7 @@
     <!--    web-->
     <Platform>web</Platform>
     <BrowserType>chrome</BrowserType>
-    <webUrl>http://localhost:4000/</webUrl>
+    <webUrl>http://localhost:3000/</webUrl>
     <firstName>jeffjeff</firstName>
     <lastName>Kuku</lastName>
     <userName>jeffjeff123456</userName>
