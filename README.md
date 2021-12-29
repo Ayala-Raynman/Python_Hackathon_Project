@@ -13,7 +13,7 @@ desktop Applcation
 
 Eelectron Applcation
 
-Web API
+Rest API
 
 ## The test was conducted on these applications:
 Real World app in web
